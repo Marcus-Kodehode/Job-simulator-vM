@@ -35,10 +35,10 @@ function combatSystem() {
   //   gainSound.playGainSound();
   // }
 
-  const gainSound = new Audio("/Job simulator/sounds/cha-ching.wav");
-  const loseSound = new Audio("/Job simulator/sounds/aaww.wav");
-  const gameOverSound = new Audio("/Job simulator/sounds/game-over.wav");
-  const luckyBreakSound = new Audio("/Job simulator/sounds/phew.wav");
+  const gainSound = new Audio("/sounds/cha-ching.wav");
+  const loseSound = new Audio("/sounds/aaww.wav");
+  const gameOverSound = new Audio("/sounds/game-over.wav");
+  const luckyBreakSound = new Audio("/sounds/phew.wav");
 
   let playerName = csName.value;
   playerName

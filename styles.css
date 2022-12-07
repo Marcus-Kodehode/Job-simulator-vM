@@ -1,0 +1,140 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  /* background-color: rgb(7, 2, 20); */
+  background-image: radial-gradient(
+      circle,
+      #04000eb7 30%,
+      #12003e 50%,
+      #12003e 20%,
+      #04000eee 70%
+    ),
+    url(https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1211&q=80);
+  /* url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80); */
+  background-position: center;
+  color: white;
+  background-attachment: fixed;
+  background-repeat: repeat-y;
+  background-size: cover;
+  font-family: "Turret Road", "Goldman", "League Spartan", sans-serif, cursive;
+}
+
+div {
+  display: flex;
+  border-radius: 10px;
+  height: fit-content;
+  flex-direction: column;
+  align-items: center;
+  /* border: 3px solid #4d102c; */
+  /* background-color: #12003eb7; */
+  backdrop-filter: blur(5px);
+  /* box-shadow: 1px 1px 2px 1px #35444f; */
+  margin: 10px;
+  padding: 10px;
+}
+
+div.app_wrapper {
+  background-color: #12003eb7;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: fit-content;
+}
+
+input {
+  padding: 2px;
+  background-color: #9ca3db;
+  margin-block: 10px;
+  color: #b23a48;
+  border-radius: 5px;
+  width: fit-content;
+  border-top: #9ca3db 2px solid;
+  border-bottom: #515680 2px solid;
+  border-left: #6b72a3 2px solid;
+  border-right: #6b72a3 2px solid;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+input::placeholder {
+  color: #b23a48;
+}
+
+p {
+  /* background-color: #27194b; */
+  color: #9ca3db;
+  font-weight: 500;
+  width: fit-content;
+  max-width: 300px;
+  padding: 10px;
+  border: 1px solid #9bb6ff;
+  box-shadow: 0 0 20px #9bb6ff;
+  border-radius: 5px;
+}
+
+#csResultField p {
+  padding: 0;
+  border: none;
+}
+
+div #csResultField {
+  padding: 0 0.9em;
+  /* background-color: #003e0da9; */
+  justify-content: flex-start;
+}
+
+h3 {
+  border-top: #9ca3db 5px solid;
+  border-bottom: #515680 5px solid;
+  border-left: #6b72a3 5px solid;
+  border-right: #6b72a3 5px solid;
+  border-radius: 8px;
+  padding: 3px;
+  color: #9ca3db;
+  background-color: #1c224e;
+  font-weight: 500;
+  width: fit-content;
+  max-width: 200px;
+  text-align: center;
+}
+
+button {
+  border-top: #6c73a1 1px solid;
+  border-right: #6b72a3 5px solid;
+  border-bottom: #515680 5px solid;
+  border-left: #6b72a3 5px solid;
+  border-radius: 12px;
+  color: #be0159;
+  /* box-shadow: 0 0 3px 2px rgb(107, 5, 22); */
+  padding: 5px;
+  background-color: #6b72a3;
+  font-size: 15px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+/*! cool button style! */
+
+button:active {
+  border-color: #1c224e;
+  background-color: #272e66;
+}
+
+.image_result {
+  background-size: cover;
+  display: none;
+  position: fixed;
+  top: 5%;
+  /* bottom: 0; */
+  right: 5%;
+  /* left: 0; */
+  margin: auto;
+
+  height: 30%;
+  width: 20%;
+  border-radius: 5px;
+  box-shadow: 0px 0px 6px 2px #666;
+  background-color: #212529;
+  color: whitesmoke;
+}

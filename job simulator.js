@@ -20,10 +20,10 @@ const event_window = document.getElementById("random_event");
 //     `;
 
 //*/ get the sounds for the simulator:
-const gainSound = new Audio("/sounds/cha-ching.wav");
-const loseSound = new Audio("/sounds/aaww.wav");
-const gameOverSound = new Audio("/sounds/game-over.wav");
-const luckyBreakSound = new Audio("/sounds/phew.wav");
+const gainSound = new Audio("./sounds/cha-ching.wav");
+const loseSound = new Audio("./sounds/aaww.wav");
+const gameOverSound = new Audio("./sounds/game-over.wav");
+const luckyBreakSound = new Audio("./sounds/phew.wav");
 
 csButton.addEventListener("click", combatSystem);
 
@@ -77,8 +77,8 @@ function combatSystem() {
       break;
   }
 
-  console.log(randomNumber);
-  console.log(hitOrMiss);
+  console.log("randomNumber is " + randomNumber);
+  console.log("hitOrMiss is: " + hitOrMiss);
 
   let dmgNumber = Math.floor(Math.random() * 200);
   let dmgResult = "";
@@ -146,24 +146,24 @@ function combatSystem() {
   if (csButtonClick > 0) {
     csResult.style.cssText = `
   padding: 10px;
-  border: 1px solid #9bb6ff;
-  box-shadow: 0 0 20px #9bb6ff;`;
+  border: 1px solid #8ab100;
+  box-shadow: 0 0 20px #c8ff00;`;
     csResult2.style.cssText = `
-    padding: 10px;
-    border: 1px solid #9bb6ff;
-    box-shadow: 0 0 20px #9bb6ff;`;
+  padding: 10px;
+  border: 1px solid #8ab100;
+  box-shadow: 0 0 20px #c8ff00;`;
     csResult3.style.cssText = `
-    padding: 10px;
-    border: 1px solid #9bb6ff;
-    box-shadow: 0 0 20px #9bb6ff;`;
+  padding: 10px;
+  border: 1px solid #8ab100;
+  box-shadow: 0 0 20px #c8ff00;`;
     csResult4.style.cssText = `
-    padding: 10px;
-    border: 1px solid #9bb6ff;
-    box-shadow: 0 0 20px #9bb6ff;`;
+  padding: 10px;
+  border: 1px solid #8ab100;
+  box-shadow: 0 0 20px #c8ff00;`;
     moneyCounter.style.cssText = `
-    padding: 10px;
-    border: 1px solid #9bb6ff;
-    box-shadow: 0 0 20px #9bb6ff;`;
+  padding: 10px;
+  border: 1px solid #8ab100;
+  box-shadow: 0 0 20px #c8ff00;`;
   }
 
   moneyCounter.textContent = "$$$";
@@ -180,7 +180,7 @@ function combatSystem() {
   csResult2.textContent = `${hitOrMiss} ${dmgResult}`;
   csResult3.textContent = `${promotion}`;
 
-  //*/ checks if the player get a lucky break or not:
+  //*/ checks if the player get a lucky break or not. Ends the game if not:
   if (randomNumber2 > 0 && randomNumber >= 80) {
     luckyBreakSound.play();
     csResult3.textContent =
@@ -190,7 +190,7 @@ function combatSystem() {
     gameOverSound.play();
     csResult4.textContent = `Final score: ${
       total + 1000
-    }$. You managed to keep your job for ${days}`;
+    }$. You managed to keep your job for ${days} days`;
     days = 0;
     csButtonClick = 1;
     numberArray = [];
@@ -201,7 +201,7 @@ function combatSystem() {
   randomEventCriteria =
     randomNumber3 >= 5 && csButton.textContent !== "Restart" && days > 2;
 
-  //*/ random events:
+  //*/ random events. Not completed:
   if (randomEventCriteria) {
     event_window.style.cssText = `
   display: inline;`;
@@ -282,26 +282,3 @@ function combatSystem() {
 //     texContent: `${playerName} ${playerClass}`,
 //     className: "csResult",
 //   });
-
-//////////////////////////////////////////////////////////////*/
-/ Sum of digits (not completed) /;
-//////////////////////////////////////////////////////////////*/
-
-// const inputDigits = document.getElementById("inputDigits");
-// const digitsButton = document.getElementById("digitsButton");
-// const digitsResult = document.getElementById("digitsResult");
-
-// digitsButton.addEventListener("click", sumOfDigits);
-
-// function sumOfDigits() {
-//   let i = 0;
-//   i < inputDigits.length;
-//   i++;
-// if (inputDigits.value % 2) {
-//   digitsResult.textContent = `${inputDigits.value} is an odd number`;
-// } else {
-//   digitsResult.textContent = `${inputDigits.value} is an even number`;
-// }
-
-//! What to do next: object in this function above. pick out from Arrays. API (information you get from the internet (fetch from server)) */
-// }

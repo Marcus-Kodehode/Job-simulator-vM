@@ -2,21 +2,22 @@ body {
   display: flex;
   justify-content: center;
   align-content: center;
-  /* background-color: rgb(7, 2, 20); */
-  background-image: radial-gradient(
-      circle,
-      #04000eb7 30%,
-      #12003e 50%,
-      #12003e 20%,
-      #04000eee 70%
-    ),
-    url(https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1211&q=80);
+  /* background-color: grey; */
+  background: radial-gradient(
+    circle,
+    rgb(145, 126, 126) 0%,
+    rgb(124, 118, 106) 10%,
+    #423e38b7 30%,
+    #272724 50%,
+    rgb(0, 0, 0) 80%
+  );
+  /* url(https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1211&q=80); */
   /* url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80); */
-  background-position: center;
+  /* background-position: center; */
   color: white;
-  background-attachment: fixed;
+  /* background-attachment: fixed;
   background-repeat: repeat-y;
-  background-size: cover;
+  background-size: cover; */
   font-family: "Turret Road", "Goldman", "League Spartan", sans-serif, cursive;
 }
 
@@ -39,7 +40,7 @@ div {
 }
 
 div.app_wrapper {
-  background-color: #12003eb7;
+  background-color: #020202b7;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -52,15 +53,15 @@ div.app_wrapper {
 
 input {
   padding: 2px;
-  background-color: #9ca3db;
+  background-color: #d5d6da;
   margin-block: 10px;
   color: #b23a48;
   border-radius: 5px;
   width: fit-content;
-  border-top: #9ca3db 2px solid;
-  border-bottom: #515680 2px solid;
-  border-left: #6b72a3 2px solid;
-  border-right: #6b72a3 2px solid;
+  border-top: #c7c8cc 2px solid;
+  border-bottom: #78797e 2px solid;
+  border-left: #9b9ba0 2px solid;
+  border-right: #9b9ba0 2px solid;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
@@ -71,13 +72,13 @@ input::placeholder {
 p {
   /* background-color: #27194b; */
   text-align: center;
-  color: #9ca3db;
+  color: #c8ff00;
   font-weight: 500;
   width: fit-content;
   max-width: 300px;
   padding: 10px;
-  border: 1px solid #9bb6ff;
-  box-shadow: 0 0 20px #9bb6ff;
+  /* border: 1px solid #c8ff00;
+  box-shadow: 0 0 20px #c8ff00; */
   border-radius: 5px;
 }
 
@@ -98,14 +99,14 @@ div #csResultField {
 }
 
 h3 {
-  border-top: #9ca3db 5px solid;
-  border-bottom: #515680 5px solid;
-  border-left: #6b72a3 5px solid;
-  border-right: #6b72a3 5px solid;
+  border-top: #d5d6da 1px solid;
+  border-bottom: #78797e 5px solid;
+  border-left: #9b9ba0 5px solid;
+  border-right: #9b9ba0 5px solid;
+  background-color: #545457;
   border-radius: 8px;
   padding: 3px;
-  color: #9ca3db;
-  background-color: #1c224e;
+  color: #c8ff00;
   font-weight: 500;
   width: fit-content;
   max-width: 200px;
@@ -113,23 +114,30 @@ h3 {
 }
 
 button {
-  border-top: #6c73a1 1px solid;
+  border-top: #d5d6da 1px solid;
+  border-bottom: #78797e 5px solid;
+  border-left: #9b9ba0 5px solid;
+  border-right: #9b9ba0 5px solid;
+  background-color: #c7c8cc;
+  /** old colors: */
+  /* border-top: #6c73a1 1px solid;
   border-right: #6b72a3 5px solid;
   border-bottom: #515680 5px solid;
-  border-left: #6b72a3 5px solid;
+  border-left: #6b72a3 5px solid; 
+    background-color: #6b72a3;*/
   border-radius: 12px;
   color: #be0159;
   /* box-shadow: 0 0 3px 2px rgb(107, 5, 22); */
   padding: 5px;
-  background-color: #6b72a3;
+
   font-size: 15px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 /*! cool button style! */
 
 button:active {
-  border-color: #1c224e;
-  background-color: #272e66;
+  border-color: #8ab100;
+  background-color: #c8ff00;
 }
 
 /* Event windows */

@@ -2,6 +2,7 @@
 / Job simulator /;
 //////////////////////////////////////////////////////////////*/
 
+//*/ get the elements for the simulator:
 const csName = document.getElementById("csName");
 const csClass = document.getElementById("csClass");
 const csButton = document.getElementById("csButton");
@@ -12,33 +13,31 @@ const csResult4 = document.getElementById("csResult4");
 const moneyCounter = document.getElementById("moneyCounter");
 const csResultField = document.getElementById("csResultField");
 const image = document.getElementById("image_result");
-// const csResultOutput = document.querySelectorAll("csResultField p");
-
-csButton.addEventListener("click", combatSystem);
-
-let csButtonClick = 0;
-let numberArray = [];
+const dayWindow = document.getElementById("day_window");
+const event_window = document.getElementById("random_event");
 
 // image.style.backgroundImage = `https://images.unsplash.com/photo-1626301688449-1fa324d15bca?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80;
 //     `;
 
+//*/ get the sounds for the simulator:
+const gainSound = new Audio("/sounds/cha-ching.wav");
+const loseSound = new Audio("/sounds/aaww.wav");
+const gameOverSound = new Audio("/sounds/game-over.wav");
+const luckyBreakSound = new Audio("/sounds/phew.wav");
+
+csButton.addEventListener("click", combatSystem);
+
+let csButtonClick = 0;
+let days = 0;
+let numberArray = [];
+
 function combatSystem() {
   csButtonClick += 1;
-  // image.style.cssText = `
-  // display: inline;
-  // `;
+  days += 1;
 
-  // function playGainSound() {
-  //   const gainSound = new Audio(
-  //     'https://cdn.freesound.org/previews/351/351304_96253-lq.mp3 title="mp3 file'
-  //   );
-  //   gainSound.playGainSound();
-  // }
-
-  const gainSound = new Audio("/sounds/cha-ching.wav");
-  const loseSound = new Audio("/sounds/aaww.wav");
-  const gameOverSound = new Audio("/sounds/game-over.wav");
-  const luckyBreakSound = new Audio("/sounds/phew.wav");
+  dayWindow.style.cssText = `
+  display: inline;`;
+  dayWindow.textContent = `Day ${days}`;
 
   let playerName = csName.value;
   playerName
@@ -56,6 +55,7 @@ function combatSystem() {
 
   let randomNumber = Math.floor(Math.random() * 100);
   let randomNumber2 = Math.floor(Math.random() * 3);
+  let randomNumber3 = Math.floor(Math.random() * 10);
 
   console.log("randomNumber2 is " + randomNumber2);
 
@@ -104,7 +104,7 @@ function combatSystem() {
       promotion = "Your client is satisfied with your work. Good job!";
       csButton.textContent = "Keep working";
       image.style.cssText = `
-      background-image: url(https://images.unsplash.com/photo-1629721671030-a83edbb11211?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=736&q=80);  
+      background-image: url(https://images.unsplash.com/photo-1579227114347-15d08fc37cae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);  
       display: inline;`;
       break;
     case "You coded some next level shit!":
@@ -117,13 +117,13 @@ function combatSystem() {
         "Your client is ecstatic over your amazing work. He is recommending you for an multi-million dollar company!";
       csButton.textContent = "Continue coding!";
       image.style.cssText = `
-      background-image: url(https://images.unsplash.com/photo-1579227114347-15d08fc37cae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);  
+      background-image: url(https://images.unsplash.com/photo-1610375461246-83df859d849d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);  
       display: inline;`;
       break;
     case "You `accidently` stole some code from a well known company and got caught!":
       dmgResult = `You lost ${
         dmgNumber * 4
-      }$ in the copyright trial. Fucking hell man`;
+      }$ in the copyright trial. Fucking hell man.`;
       dmgNumber = -dmgNumber * 4;
       promotion =
         "Your career as a coder is ended. Nobody wants to ever work with you again.";
@@ -188,13 +188,47 @@ function combatSystem() {
     csResult4.textContent = `${total + 1000}$`;
   } else if (csButton.textContent === "Restart") {
     gameOverSound.play();
-    csResult4.textContent = `Final score: ${total + 1000}$`;
+    csResult4.textContent = `Final score: ${
+      total + 1000
+    }$. You managed to keep your job for ${days}`;
+    days = 0;
     csButtonClick = 1;
     numberArray = [];
   } else {
     csResult4.textContent = `${total + 1000}$`;
   }
 
+  randomEventCriteria =
+    randomNumber3 >= 5 && csButton.textContent !== "Restart" && days > 2;
+
+  //*/ random events:
+  if (randomEventCriteria) {
+    event_window.style.cssText = `
+  display: inline;`;
+    event_window.innerHTML = /*html*/ `<div class='random_event-wrapper'><h1>Event!</h1>
+      <p>Some shit happend and you have to take care of it!</p>
+      <p>What will you do?</p>
+      <div class='event_btn'>
+        <button>Choice 1</button>
+        <button>Choice 2</button>
+      </div>
+      <h2>Result of choice:</h2>
+      <p>
+        Here is the result of your stupid choice. I hope you are happy with
+        yourself!
+      </p>
+      <button id='event_close_btn'>
+        Get back <br />
+        to coding!
+      </button>
+      </div>`;
+  }
+
+  if (event_window.style.cssText === "display: inline") {
+    event_close_btn.addEventListener("click", () =>
+      console.log("clickity click!!!")
+    );
+  }
   console.log(csButtonClick);
   // console.log("csResultOutput is" + [csResultOutput]);
 }

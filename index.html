@@ -27,14 +27,22 @@
     <title>Developer job-simulator</title>
   </head>
   <body>
-    <div class="day_window" id="day_window">Day 1</div>
+    <div class="date_window" id="date_window">Day 1</div>
     <div class="app_wrapper">
       <h3>Developer job-simulator</h3>
+      <!-- todo: remove input when csButton is pressed -->
       <input type="name" placeholder="Enter name" id="csName" />
       <input type="name" placeholder="Enter job-title" id="csClass" />
-      <button id="csButton">Start job</button>
-      <div id="csResultField">
+      <button id="csStartButton">Start working</button>
+      <button id="csRestartButton">Restart</button>
+      <div id="workField">
         <p id="csResult"></p>
+        <p>How will you work?</p>
+        <button id="csButton">Safe</button>
+        <button id="csButton2">Normal</button>
+        <button id="csButton3">Unethical</button>
+      </div>
+      <div id="csResultField">
         <p id="csResult2"></p>
         <p id="csResult3"></p>
         <div>
@@ -44,27 +52,23 @@
       </div>
     </div>
     <div class="image_result" id="image_result"></div>
-    <!-- <div class="random_event" id="random_event">
-      <div class="event_text" id="event_text"> -->
-    <!-- <h1>Event!</h1>
-        <p>Some shit happend and you have to take care of it!</p>
-      </div>
-      <p>What will you do?</p>
+    <div class="random_event" id="random_event">
+      <div class="event_header" id="event_header"></div>
       <div class="event_btn">
         <button id="event_btn1">Choice 1</button>
         <button id="event_btn2">Choice 2</button>
       </div>
       <div class="event_result" id="event_result">
-        <h2>Result of choice:</h2>
+        <!-- <h2>Result of choice:</h2>
         <p>
           Here is the result of your stupid choice. I hope you are happy with
           yourself!
-        </p>
+        </p> -->
       </div>
       <button id="event_close_btn">
         Get back <br />
         to coding!
-      </button> -->
-    <!-- </div> -->
+      </button>
+    </div>
   </body>
 </html>

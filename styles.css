@@ -158,6 +158,7 @@ button:active {
 .image_result,
 .date_window,
 .random_event {
+  z-index: 99;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

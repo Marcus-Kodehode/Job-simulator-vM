@@ -381,7 +381,7 @@ function combatSystem() {
   //   (eventCloseBtn.style.cssText = `
   //   display: inline;`);
 
-  randomEventCriteria = randomNumber3 >= 1 && gameState !== "end" && days > 2;
+  randomEventCriteria = randomNumber3 >= 7 && gameState !== "end" && days > 2;
 
   if (randomEventCriteria) {
     eventWindow.style.cssText = `
@@ -398,16 +398,18 @@ function combatSystem() {
     );
   }
 
-  //  dateWindow.innerHTML = `Day: 1 <br> Week: 1 <br> Month: 1`;
+  //* Weekly event
+  if ((days = 1 && week > 1))
+    //  dateWindow.innerHTML = `Day: 1 <br> Week: 1 <br> Month: 1`;
 
-  // const eventWindow = document.getElementById("random_event");
-  // const eventCloseBtn = document.getElementById("event_close_btn");
-  // const eventHeader = document.getElementById("event_header");
-  // const eventButton1 = document.getElementById("event_btn1");
-  // const eventButton2 = document.getElementById("event_btn2");
-  // const eventResult = document.getElementById("event_result");
+    // const eventWindow = document.getElementById("random_event");
+    // const eventCloseBtn = document.getElementById("event_close_btn");
+    // const eventHeader = document.getElementById("event_header");
+    // const eventButton1 = document.getElementById("event_btn1");
+    // const eventButton2 = document.getElementById("event_btn2");
+    // const eventResult = document.getElementById("event_result");
 
-  console.log(csButtonClick);
+    console.log(csButtonClick);
 
   //* end of combatsystem code
 }

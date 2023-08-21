@@ -399,7 +399,7 @@ function combatSystem() {
   }
 
   //* Weekly event
-  if ((days = 1 && week > 1))
+  if ((days === 1 && week > 1))
     //  dateWindow.innerHTML = `Day: 1 <br> Week: 1 <br> Month: 1`;
 
     // const eventWindow = document.getElementById("random_event");

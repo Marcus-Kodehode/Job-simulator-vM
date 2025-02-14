@@ -95,9 +95,11 @@ csRestartButton.addEventListener(
 );
 
 eventCloseBtn.addEventListener("click", () => {
+  eventWindow.style.cssText = "display: none;";
   eventCloseBtn.style.cssText = "display: none;";
   eventResult.innerHTML = "";
 });
+
 
 //todo setTimeOut
 csButton.addEventListener(

@@ -50,7 +50,7 @@ function player() {
   gameState = "play"; // Setter spillets tilstand til "play"
   let playerName = csName.value; // Henter brukerens navn fra input
   playerName
-    ? (playerName = `Hello ${playerName[0].toUpperCase()}${playerName.slice(1)}! You start out with 10$ from the Goverment`) // Formaterer navnet med stor forbokstav hvis det er skrevet inn
+    ? (playerName = `Hello ${playerName[0].toUpperCase()}${playerName.slice(1)}! You start out with 50$ from the Goverment`) // Formaterer navnet med stor forbokstav hvis det er skrevet inn
     : (playerName = `Hello! You start out with 10$ from you're friendly Goverment.`); // Standard melding hvis ingen navn er skrevet inn
 
   let playerClass = csClass.value; // Henter brukerens hobo-type fra input

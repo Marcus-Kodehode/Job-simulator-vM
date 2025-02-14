@@ -5,7 +5,7 @@
 //*/ Henter elementene for simulatoren:
 const csName = document.getElementById("csName"); // Henter inputfelt for navn
 const csClass = document.getElementById("csClass"); // Henter inputfelt for hobo-type
-const csStartButton = document.getElementById("csStartButton"); // Henter startknappen
+const csStartButton = document.getElementById("csStartButton"); // Henter start-knappen
 const csRestartButton = document.getElementById("csRestartButton"); // Henter restart-knappen
 const workField = document.getElementById("workField"); // Henter containeren for arbeidsfeltet
 const csButton = document.getElementById("csButton"); // Henter knappen for "Beg"
@@ -96,31 +96,28 @@ eventCloseBtn.addEventListener("click", () => {
 });
 
 //todo setTimeOut
-// Eventlisteners for de tre valgknappene i spillet:
-csButton.addEventListener(
-  "click",
-  () => {
-    multiplier = 0.75; // Setter multiplier for "Beg"-valget
-    risk = risk * 0.9; // Reduserer risiko med 10%
-    combatSystem(); // Kjører kampfunksjonen
-  }
-);
-csButton2.addEventListener(
-  "click",
-  () => {
-    multiplier = 1; // Setter multiplier for "Walk the streets"-valget
-    risk = risk * 1 - 0.5; // Justerer risiko (merk: uttrykket kan forenkles)
-    combatSystem(); // Kjører kampfunksjonen
-  }
-);
-csButton3.addEventListener(
-  "click",
-  () => {
-    multiplier = 2; // Setter multiplier for "Crime"-valget
-    risk = risk * 1.2 + 1; // Øker risiko
-    combatSystem(); // Kjører kampfunksjonen
-  }
-);
+// Oppdaterte eventlisteners for de tre valgknappene:
+
+// Beg-knappen – trygt valg med lavere gevinst og lavere risiko
+csButton.addEventListener("click", () => {
+  multiplier = 0.5; // Lav multiplier gir mindre gevinst
+  risk = risk * 0.8; // Reduserer risikoen med 20%
+  combatSystem(); // Kjører kampfunksjonen
+});
+
+// Walk the streets-knappen – middels risiko og gevinst
+csButton2.addEventListener("click", () => {
+  multiplier = 1; // Standard multiplier
+  // La risikoen være uendret for dette valget
+  combatSystem(); // Kjører kampfunksjonen
+});
+
+// Crime-knappen – høy risiko med høy gevinst
+csButton3.addEventListener("click", () => {
+  multiplier = 3; // Høy multiplier gir mye gevinst ved suksess
+  risk = risk * 1.5 + 2; // Øker risikoen betydelig
+  combatSystem(); // Kjører kampfunksjonen
+});
 
 // Hovedfunksjon for kamp-systemet
 function combatSystem() {
@@ -170,6 +167,7 @@ function combatSystem() {
 
   //* Legger til multiplier på dmgNumber:
   dmgNumber = dmgNumber * multiplier; // Justerer skade-/gevinstverdien basert på multiplier
+  dmgNumber = dmgNumber * 0.5; // <-- Reduserer beløpet/gevinsten med 50%
 
   // Bruker switch for å bestemme resultatet basert på hitOrMiss:
   switch (hitOrMiss) {
@@ -196,7 +194,7 @@ function combatSystem() {
       gainSound.play(); // Spill gevinst-lyd
       dmgResult = `She gave you ${dmgNumber * 15}$ for food and shelter!`; // Setter melding med stor gevinst
       dmgNumber = dmgNumber * 15; // Øker gevinstverdien
-      promotion = "A liberal couple let you live in their shed for a night, what a lovely couple!"; // Ekstra melding
+      promotion = "A liberal couple let's you stay in their shed in the backyard for the night, what a lovely couple!"; // Ekstra melding
       image.style.cssText = `
         background-image: url(https://images.unsplash.com/photo-1610375461246-83df859d849d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);  
         display: inline;
@@ -215,7 +213,7 @@ function combatSystem() {
   }
 
   numberArray.push(dmgNumber); // Legger den beregnede verdien til i arrayet
-  let total = 1000; // Starter total score på 1000
+  let total = 50; // Starter total score på 50 (oppdatert)
   for (let dmg of numberArray) { // Løkke for å summere alle verdier i arrayet
     total += dmg; // Legger til hver verdi i totalen
   }
@@ -231,10 +229,10 @@ function combatSystem() {
   if (randomNumber2 > risk && randomNumber >= 80) {
     luckyBreakSound.play(); // Spill lucky break-lyd
     csResult3.textContent = "You you got lucky this time. You live to see another day."; // Oppdaterer melding
-    csResult4.textContent = `${(total + 1000).toFixed(2)}$`; // Øker total score med 1000 og viser
+    csResult4.textContent = `${(total + 50).toFixed(2)}$`; // Øker total score med 50 (oppdatert bonus)
   } else if (randomNumber2 < risk && randomNumber >= 80) {
     gameOverSound.play(); // Spill game over-lyd
-    csResult4.textContent = `Final score: ${(total + 1000).toFixed(2)}$. You manage to stay alive for ${csButtonClick} days`; // Viser sluttresultatet
+    csResult4.textContent = `Final score: ${(total + 50).toFixed(2)}$. You manage to stay alive for ${csButtonClick} days`; // Viser sluttresultatet med oppdatert bonus
     //*/ Tilbakestiller spillet:
     gameState = "end"; // Setter spillets tilstand til "end"
     days = 0; // Nullstiller dager
@@ -350,6 +348,9 @@ function combatSystem() {
   if (days === 1 && week > 1)
     console.log(csButtonClick); // Logger antall klikk (her kan du legge til ukentlig event-logikk)
 }
+
+
+
 
 
 

@@ -23,24 +23,25 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-    <script src="job simulator.js" defer></script>
-    <title>Hobo-simulator</title>
+    <!-- Vurder å gi filen et navn uten mellomrom, f.eks. "job-simulator.js" -->
+    <script defer src="job simulator.js"></script>
+    <title>The Hobo-lator</title>
   </head>
   <body>
     <div class="date_window" id="date_window">Day 1</div>
     <div class="app_wrapper">
-      <h3>Hobo-simulator</h3>
+      <h3>The Hobo-lator</h3>
       <!-- todo: remove input when csButton is pressed -->
-      <input type="name" placeholder="Enter name" id="csName" />
-      <input type="name" placeholder="Enter job-title" id="csClass" />
-      <button id="csStartButton">Start working</button>
+      <input type="text" placeholder="Enter name" id="csName" />
+      <input type="text" placeholder="Enter hobo-type" id="csClass" />
+      <button id="csStartButton">Start your life</button>
       <button id="csRestartButton">Restart</button>
       <div id="workField">
         <p id="csResult"></p>
         <p>What will you do today?</p>
-        <div style="flex-direction: row">
+        <div style="display: flex; flex-direction: row;">
           <button id="csButton">Beg</button>
-          <button id="csButton2">Look for work</button>
+          <button id="csButton2">Walk the streets</button>
           <button id="csButton3">Crime</button>
         </div>
       </div>
@@ -74,3 +75,4 @@
     </div>
   </body>
 </html>
+

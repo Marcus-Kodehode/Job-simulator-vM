@@ -399,7 +399,57 @@ if (randomEventDogCriteria) {
   eventButton1.addEventListener("click", eventDogResult1);
   eventButton2.addEventListener("click", eventDogResult2);
 }
+//*/ NY RANDOM EVENT: Veldedighetsbesøket
+const randomEventCharity = () => { // Funksjon for å vise veldedighetsbesøket
+  eventHeader.innerHTML = `<h1>A charity volunteer stops by!</h1>
+      <p>A kind volunteer offers you a small donation to help you out.</p>
+      <p>Do you accept the donation?</p>`; // Setter overskrift og beskrivelse
+  eventButton1.style.cssText = "display: inline-block;"; // Viser første valg-knapp
+  eventButton1.textContent = "Accept donation"; // Alternativ 1: aksepter donasjonen
+  eventButton2.style.cssText = "display: inline-block;"; // Viser andre valg-knapp
+  eventButton2.textContent = "Politely decline"; // Alternativ 2: høflig avslå
+};
 
+function eventCharityResult1() { // Funksjon for når spilleren aksepterer donasjonen
+  eventResult.innerHTML = `<h2>Result:</h2>
+      <p>You accept the donation and receive an extra $5!</p>`; // Spilleren får $5 bonus
+  total += 5; // Legger til $5 i totalen
+  eventCloseBtn.style.cssText = "display: inline;"; // Viser lukkeknappen for eventen
+  csResult4.textContent = `${total.toFixed(2)}$`; // Oppdaterer total score
+  eventButton1.style.cssText = "display: none;"; // Skjuler valg-knappene
+  eventButton2.style.cssText = "display: none;";
+}
+
+function eventCharityResult2() { // Funksjon for når spilleren høflig avslår donasjonen
+  eventResult.innerHTML = `<h2>Result:</h2>
+      <p>You politely decline, but the volunteer insists and leaves you $2 anyway.</p>`; // Spilleren får en mindre bonus
+  total += 2; // Legger til $2 i totalen
+  eventCloseBtn.style.cssText = "display: inline;";
+  csResult4.textContent = `${total.toFixed(2)}$`;
+  eventButton1.style.cssText = "display: none;";
+  eventButton2.style.cssText = "display: none;";
+}
+
+// Bestemmer om "Veldedighetsbesøket" skal vises
+// Her settes sjansen til at randomNumber3 === 1 (lav sjanse), i tillegg til at spillet ikke er avsluttet og at man har spilt mer enn 2 dager.
+let randomEventCharityCriteria = randomNumber3 === 1 && gameState !== "end" && days > 2;
+if (randomEventCharityCriteria) {
+  eventWindow.style.cssText = "display: inline;"; // Viser event-vinduet
+  randomEventCharity(); // Setter opp eventen
+  
+  // Fjern tidligere eventListeners ved å klone knappene
+  let newEventButton1 = eventButton1.cloneNode(true);
+  eventButton1.parentNode.replaceChild(newEventButton1, eventButton1);
+  eventButton1 = newEventButton1;
+  
+  let newEventButton2 = eventButton2.cloneNode(true);
+  eventButton2.parentNode.replaceChild(newEventButton2, eventButton2);
+  eventButton2 = newEventButton2;
+  
+  // Legger til eventListeners for de to alternativene
+  eventButton1.addEventListener("click", eventCharityResult1);
+  eventButton2.addEventListener("click", eventCharityResult2);
+}
 
   //* Weekly event
   if (days === 1 && week > 1)

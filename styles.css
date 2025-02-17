@@ -1,7 +1,14 @@
+/* 
+  Setter styling for hele body-elementet:
+  - Bruker flex for å sentrere innholdet horisontalt.
+  - Bruker align-content (her kan align-items være et alternativ) for innholdsjustering.
+  - Setter et radialt gradient-bakgrunn.
+  - Setter tekstfarge og fontfamilie.
+*/
 body {
-  display: flex;
-  justify-content: center;
-  align-content: center;
+  display: flex; /* Bruker flexbox */
+  justify-content: center; /* Sentrerer horisontalt */
+  align-content: center; /* Sentrerer innholdet i flere linjer (bruk gjerne align-items om det er én linje) */
   /* background-color: grey; */
   background: radial-gradient(
     circle,
@@ -11,33 +18,49 @@ body {
     #272724 50%,
     rgb(0, 0, 0) 80%
   );
+  /* Flere bakgrunnsalternativer kommentert ut: */
   /* url(https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1211&q=80); */
   /* url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80); */
   /* background-position: center; */
-  color: white;
-  /* background-attachment: fixed;
-  background-repeat: repeat-y;
-  background-size: cover; */
-  font-family: "Turret Road", "Goldman", "League Spartan", sans-serif, cursive;
+  color: white; /* Hvit tekstfarge */
+  /* Flere bakgrunnsegenskaper kommentert ut: 
+     background-attachment: fixed;
+     background-repeat: repeat-y;
+     background-size: cover; 
+  */
+  font-family: "Turret Road", "Goldman", "League Spartan", sans-serif, cursive; /* Setter font */
 }
 
+/* H1-elementer blir sentrert */
 h1 {
-  text-align: center;
+  text-align: center; /* Sentrerer overskrifter */
 }
 
+/* 
+  Denne generelle div-regelen gjelder for ALLE div-er:
+  - Setter flex-display med kolonne-retning og sentrerer innholdet.
+  - Legger til border-radius.
+  (NB! Dette kan påvirke andre div-er, så vær oppmerksom om du trenger mer spesifikke selektorer)
+*/
 div {
   display: flex;
   border-radius: 10px;
   flex-direction: column;
   align-items: center;
-  /* border: 3px solid #4d102c; */
-  /* background-color: #12003eb7; */
-  /* backdrop-filter: blur(5px); */
-  /* box-shadow: 1px 1px 2px 1px #35444f; */
-  /* margin: 10px;
-  padding: 10px; */
+  /* Følgende egenskaper er kommentert ut:
+     border: 3px solid #4d102c;
+     background-color: #12003eb7;
+     backdrop-filter: blur(5px);
+     box-shadow: 1px 1px 2px 1px #35444f;
+     margin: 10px;
+     padding: 10px;
+  */
 }
 
+/* 
+  Spesifikk styling for app_wrapper-diven:
+  - Plasserer den fast i midten av skjermen med 90% høyde.
+*/
 div.app_wrapper {
   background-color: #020202b7;
   position: fixed;
@@ -50,12 +73,13 @@ div.app_wrapper {
   height: 90%;
 }
 
+/* Styling for inputfelt */
 input {
-  padding: 2px;
-  background-color: #d5d6da;
-  margin-block: 10px;
-  color: #b23a48;
-  border-radius: 5px;
+  padding: 2px; /* Litt polstring */
+  background-color: #d5d6da; /* Lys bakgrunnsfarge */
+  margin-block: 10px; /* Vertikal margin */
+  color: #b23a48; /* Tekstfarge */
+  border-radius: 5px; /* Runde hjørner */
   width: fit-content;
   border-top: #c7c8cc 2px solid;
   border-bottom: #78797e 2px solid;
@@ -64,48 +88,62 @@ input {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
+/* Placeholder-farge for inputfelt */
 input::placeholder {
   color: #b23a48;
 }
 
+/* Styling for <p>-elementer */
 p {
   /* background-color: #27194b; */
-  text-align: center;
-  color: #c8ff00;
+  text-align: center; /* Sentrerer tekst */
+  color: #c8ff00; /* Lys gul/grønn farge */
   font-weight: 500;
   width: fit-content;
   max-width: 300px;
   padding: 10px;
-  /* border: 1px solid #c8ff00;
-  box-shadow: 0 0 20px #c8ff00; */
+  /* Følgende er kommentert ut:
+     border: 1px solid #c8ff00;
+     box-shadow: 0 0 20px #c8ff00;
+  */
   border-radius: 5px;
 }
 
+/* 
+  #workField er skjult som standard.
+*/
 #workField {
   display: none;
   /* flex-direction: row; */
 }
 
+/* 
+  Restart-knappen er også skjult som standard.
+*/
 #csRestartButton {
   display: none;
 }
 
+/* Fjerner padding og border for <p> inni csResultField */
 #csResultField p {
   padding: 0;
   border: none;
 }
 
+/* Styling for csResultField-diven – bruker en spesifikk selector */
 div #csResultField {
-  padding: 0 0.9em;
+  padding: 0 0.9em; /* Horisontal polstring */
   /* background-color: #003e0da9; */
-  justify-content: flex-start;
+  justify-content: flex-start; /* Starter innholdet fra venstre */
 }
 
+/* Fjerner margin for csResult4 og moneyCounter */
 #csResult4,
 #moneyCounter {
   margin: 0;
 }
 
+/* Styling for <h3>-elementer */
 h3 {
   border-top: #d5d6da 1px solid;
   border-bottom: #78797e 5px solid;
@@ -121,48 +159,58 @@ h3 {
   text-align: center;
 }
 
+/* 
+  Grunnleggende styling for knapper:
+  - Setter border, bakgrunnsfarge, border-radius og font.
+*/
 button {
   border-top: #d5d6da 1px solid;
   border-bottom: #78797e 5px solid;
   border-left: #9b9ba0 5px solid;
   border-right: #9b9ba0 5px solid;
   background-color: #c7c8cc;
-  /** old colors: */
-  /* border-top: #6c73a1 1px solid;
-  border-right: #6b72a3 5px solid;
-  border-bottom: #515680 5px solid;
-  border-left: #6b72a3 5px solid; 
-    background-color: #6b72a3;*/
+  /** gamle farger kommentert ut:
+      border-top: #6c73a1 1px solid;
+      border-right: #6b72a3 5px solid;
+      border-bottom: #515680 5px solid;
+      border-left: #6b72a3 5px solid; 
+      background-color: #6b72a3;
+  */
   border-radius: 12px;
   color: #be0159;
   /* box-shadow: 0 0 3px 2px rgb(107, 5, 22); */
   padding: 5px;
-
   font-size: 15px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
-/*! cool button style! */
 
+/* Endre styling når en knapp er aktiv (trykket) */
 button:active {
   border-color: #8ab100;
   background-color: #c8ff00;
 }
 
+/* 
+  Kommentar: #csButton2 og #csButton3 kan eventuelt skjules, men er her ikke aktivt skjult.
+*/
 #csButton2,
 #csButton3 {
   /* display: none; */
 }
 
-/* Event windows */
-
+/* 
+  Styling for eventvinduer: .image_result, .date_window og .random_event
+  - Bruker fixed/absolute posisjonering, box-shadow, border-radius, osv.
+  - De er skjult som standard (display: none).
+*/
 .image_result,
 .date_window,
 .random_event {
-  z-index: 99;
+  z-index: 99; /* Sørger for at de ligger over annet innhold */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  display: none;
+  display: none; /* Skjult som standard */
   position: fixed;
   border-radius: 5px;
   box-shadow: 0px 0px 6px 2px #666;
@@ -170,6 +218,10 @@ button:active {
   color: whitesmoke;
 }
 
+/* 
+  Spesifikk styling for .image_result:
+  - Stiller inn størrelse og posisjon (øverst til høyre).
+*/
 .image_result {
   height: 30%;
   width: 20%;
@@ -178,6 +230,10 @@ button:active {
   margin: auto;
 }
 
+/* 
+  Styling for .date_window:
+  - Absolutt posisjonert øverst til venstre med polstring.
+*/
 .date_window {
   /* display: inline; */
   position: absolute;
@@ -189,6 +245,10 @@ button:active {
   width: fit-content;
 }
 
+/* 
+  Styling for .random_event:
+  - Absolutt posisjonert midt på skjermen med blur-effekt i bakgrunnen.
+*/
 .random_event {
   position: absolute;
   backdrop-filter: blur(5px);
@@ -202,24 +262,42 @@ button:active {
   background-color: #212529a8;
 }
 
+/* 
+  Inne i .random_event, stilles alle div-er til å bruke flex og sentrere innholdet.
+*/
 .random_event div {
   display: flex;
   justify-content: center;
 }
 
+/* 
+  .event_btn angir rekkefølgen for knappene (radvis):
+  - Merk: Det mangler display: flex; hvis du ønsker at flex-egenskapene skal tre i kraft.
+*/
 .event_btn {
   flex-direction: row;
 }
 
+/* 
+  Setter margin for knappene inne i .event_btn.
+*/
 .event_btn button {
   margin: 5px;
 }
 
+/* 
+  Styling for #event_close_btn:
+  - Skjules som standard og posisjonert med left: 40%.
+*/
 #event_close_btn {
   display: none;
   position: absolute;
   left: 40%;
 }
 
+/* 
+  .random_event_wrapper er en tom klasse for nå – den kan brukes for videre styling om ønskelig.
+*/
 .random_event_wrapper {
 }
+

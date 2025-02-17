@@ -157,7 +157,7 @@ function combatSystem() {
       hitOrMiss = "Some old lady felt sorry for you!"; // Får hjelp fra en gammel dame
       break;
     case randomNumber < 101:
-      hitOrMiss = "You tried to rob a old lady outside a store, she fought you of and called the police, you got caught!"; // Mislykket ran – blir tatt av politiet
+      hitOrMiss = "You tried to rob a old lady outside a store, she fought you of and robbed you instead!"; // Mislykket ran – blir tatt av politiet
       break;
   }
 
@@ -200,9 +200,9 @@ function combatSystem() {
         display: inline;
       `; // Setter bakgrunnsbilde for denne situasjonen
       break;
-    case "You tried to rob a old lady outside a store, she fought you of and called the police, you got caught!":
+    case "You tried to rob a old lady outside a store, she fought you of and robbed you instead":
       gameOverSound.play(); // Spill game over-lyd
-      dmgResult = `You lost ${dmgNumber * 4}$ in the court trial. Fucking hell man.`; // Setter melding for tap
+      dmgResult = `She takes ${dmgNumber * 4}$ from you. Fucking hell man.`; // Setter melding for tap
       dmgNumber = -dmgNumber * 4; // Regner negativ verdi for tap
       promotion = "You are sent to jail!"; // Ekstra melding for game over
       image.style.cssText = `
@@ -343,13 +343,98 @@ function combatSystem() {
     eventButton1.addEventListener("click", event1Result1); // Legger til eventlistener for første valg
     eventButton2.addEventListener("click", event1Result2); // Legger til eventlistener for andre valg
   }
+  //*/ NY RANDOM EVENT: Vennlig hund
+const randomEventDog = () => { // Funksjon for å vise "Vennlig hund"-eventen
+  eventHeader.innerHTML = `<h1>A friendly dog approaches!</h1>
+      <p>You notice a stray dog wagging its tail, looking hopeful and friendly.</p>
+      <p>What do you do?</p>`; // Setter overskrift og beskrivelse for eventen
+  eventButton1.style.cssText = "display: inline-block;"; // Viser første valg-knapp
+  eventButton1.textContent = "Feed the dog"; // Alternativ 1: Mate hunden
+  eventButton2.style.cssText = "display: inline-block;"; // Viser andre valg-knapp
+  eventButton2.textContent = "Ignore the dog"; // Alternativ 2: Ignorer hunden
+};
+
+function eventDogResult1() { // Funksjon for resultatet hvis spilleren velger å mate hunden
+  if (luck < 5) {
+    eventResult.innerHTML = `<h2>Result:</h2>
+      <p>You feed the dog, but it eats hungrily and then runs off. You lose $5.</p>`; // Hvis lykken er lav, taper du $5
+    total -= 5;
+  } else {
+    eventResult.innerHTML = `<h2>Result:</h2>
+      <p>You feed the dog, and it stays by your side, calming you down. Your risk is reduced!</p>`; // Hvis lykken er høy, reduseres risikoen
+    risk *= 0.9; // Reduserer risikoen med 10%
+  }
+  eventCloseBtn.style.cssText = "display: inline;"; // Viser knappen for å lukke eventen
+  csResult4.textContent = `${total.toFixed(2)}$`; // Oppdaterer total score
+  eventButton1.style.cssText = "display: none;"; // Skjuler valg-knappene
+  eventButton2.style.cssText = "display: none;";
+}
+
+function eventDogResult2() { // Funksjon for resultatet hvis spilleren velger å ignorere hunden
+  eventResult.innerHTML = `<h2>Result:</h2>
+      <p>You ignore the dog, and it wanders away. Nothing changes.</p>`; // Ingen effekt
+  eventCloseBtn.style.cssText = "display: inline;"; // Viser lukkeknappen
+  csResult4.textContent = `${total.toFixed(2)}$`; // Oppdaterer total score
+  eventButton1.style.cssText = "display: none;"; // Skjuler valg-knappene
+  eventButton2.style.cssText = "display: none;";
+}
+
+// Bestemmer om "Vennlig hund"-eventen skal vises
+// Vi setter kriteriet til at randomNumber3 må være nøyaktig 0 (lav sjanse), i tillegg til andre betingelser.
+let randomEventDogCriteria = randomNumber3 === 0 && gameState !== "end" && days > 2;
+if (randomEventDogCriteria) {
+  eventWindow.style.cssText = "display: inline;"; // Viser event-vinduet
+  randomEventDog(); // Kaller funksjonen for å sette opp hunde-eventen
+
+  // Fjern tidligere eventListeners ved å klone knappene (for å unngå opphopning)
+  let newEventButton1 = eventButton1.cloneNode(true);
+  eventButton1.parentNode.replaceChild(newEventButton1, eventButton1);
+  eventButton1 = newEventButton1;
+
+  let newEventButton2 = eventButton2.cloneNode(true);
+  eventButton2.parentNode.replaceChild(newEventButton2, eventButton2);
+  eventButton2 = newEventButton2;
+
+  // Legg til eventListeners for de to valgene
+  eventButton1.addEventListener("click", eventDogResult1);
+  eventButton2.addEventListener("click", eventDogResult2);
+}
+
 
   //* Weekly event
   if (days === 1 && week > 1)
     console.log(csButtonClick); // Logger antall klikk (her kan du legge til ukentlig event-logikk)
 }
 
+/*
+-----------------------------------------------------------
+Sammendrag av løsningen:
 
+1. **Elementhenting og initialisering:**
+   - Alle nødvendige HTML-elementer hentes inn med `document.getElementById`.
+   - Spillets tilstand, tellerverdier og konstanter som `risk`, `multiplier` og `numberArray` blir initialisert.
+
+2. **Spilleroppsett:**
+   - `player()`-funksjonen henter og formaterer spillerens navn og "hobo-type", og setter opp en velkomstmelding.
+
+3. **Hovedspilllogikk (combatSystem):**
+   - Hver gang en av de tre knappene (Beg, Walk the streets, Crime) trykkes, oppdateres `multiplier` og `risk` i henhold til valg.
+   - Det genereres tilfeldige tall for å bestemme om handlingen lykkes (hit or miss) og for å beregne en gevinst/tap-verdi (`dmgNumber`), som deretter reduseres med 50%.
+   - Resultatene fra handlingen vises i forskjellige output-felt, og total score oppdateres (startverdi satt til 50, med en bonus på 50 ved "lucky break").
+
+4. **Valgknapper og risikojustering:**
+   - **Beg-knappen:** Lav multiplikator (0.5) og lav risiko (redusert med 20).
+   - **Walk the streets-knappen:** Standard multiplikator (1) og uendret risiko.
+   - **Crime-knappen:** Høy multiplikator (3) med betydelig økt risiko.
+
+5. **Random events:**
+   - Det settes opp et tilfeldig event (f.eks. møte med en politimann) når visse kriterier er oppfylt, med egne eventListeners som fjernes ved å klone knappene.
+   - Ved å klikke lukkeknappen lukkes eventvinduet og spilleren kan fortsette.
+
+Denne strukturen og logikken gir en dynamisk spillopplevelse der valgene påvirker risiko og belønning, og alle endringer er gjort uten å forstyrre den eksisterende koden.
+
+-----------------------------------------------------------
+*/
 
 
 
